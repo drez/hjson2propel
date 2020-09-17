@@ -4,7 +4,7 @@ DirectoryIndex public/index.php
   RewriteEngine on
 
   RewriteCond %{SERVER_PORT} 80
-  RewriteRule ^(.*)$ https://goat.local/$1 [R,L]
+  RewriteRule ^(.*)$ https://apigoat.com/$1 [R,L]
 
   RewriteCond %{REQUEST_URI} !^/dbg/
   RewriteCond %{REQUEST_FILENAME} !-f

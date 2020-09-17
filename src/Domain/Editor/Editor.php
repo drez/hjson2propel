@@ -3,7 +3,7 @@
 namespace App\Domain\Editor;
 
 use App\Application\Helper\Html\Assets;
-use App\Application\Helper\Html\Html;
+use phpHtml\Html;
 
 class Editor
 {

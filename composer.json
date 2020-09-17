@@ -36,7 +36,9 @@
         "slim/slim": "^4.5",
         "twbs/bootstrap": "^4",
         "components/jquery": "2.*",
-        "drez/hjson-to-propel-xml": "dev-master"
+        "drez/hjson-to-propel-xml": "dev-master",
+        "drez/php-html": "dev-master",
+        "psr/log": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"

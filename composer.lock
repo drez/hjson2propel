@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c668cbc2597f32226906f48ab0c62b1e",
+    "content-hash": "ef33cf7176c5068f7d24da8783e9aab3",
     "packages": [
         {
             "name": "components/jquery",
@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drez/hjson-to-propel-xml.git",
-                "reference": "d15f14f60228246768f3c8dfaaff1bb301c009fc"
+                "reference": "083aa036964212191c2df6261ff9db8bf6b77e3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drez/hjson-to-propel-xml/zipball/d15f14f60228246768f3c8dfaaff1bb301c009fc",
-                "reference": "d15f14f60228246768f3c8dfaaff1bb301c009fc",
+                "url": "https://api.github.com/repos/drez/hjson-to-propel-xml/zipball/083aa036964212191c2df6261ff9db8bf6b77e3f",
+                "reference": "083aa036964212191c2df6261ff9db8bf6b77e3f",
                 "shasum": ""
             },
             "require": {
@@ -70,7 +70,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "HjsonToPropelXml\\": "src"
+                    "HjsonToPropelXml\\": "src/"
                 }
             },
             "license": [
@@ -97,7 +97,49 @@
                 "source": "https://github.com/drez/hjson-to-propel-xml/tree/master",
                 "issues": "https://github.com/drez/hjson-to-propel-xml/issues"
             },
-            "time": "2020-09-09T02:19:31+00:00"
+            "time": "2020-09-16T06:00:28+00:00"
+        },
+        {
+            "name": "drez/php-html",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drez/php-html.git",
+                "reference": "554d94a134298943a4ec14d42718e17e01e02ed4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drez/php-html/zipball/554d94a134298943a4ec14d42718e17e01e02ed4",
+                "reference": "554d94a134298943a4ec14d42718e17e01e02ed4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpHtml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frederic Vezina",
+                    "email": "fred@apigoat.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A class to write Html in PHP",
+            "homepage": "https://github.com/drez/phpHtml",
+            "keywords": [
+                "helper",
+                "html"
+            ],
+            "time": "2020-09-16T03:53:04+00:00"
         },
         {
             "name": "fig/http-message-util",
@@ -2619,7 +2661,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "drez/hjson-to-propel-xml": 20
+        "drez/hjson-to-propel-xml": 20,
+        "drez/php-html": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
