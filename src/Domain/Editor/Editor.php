@@ -68,16 +68,6 @@ editor.session.setMode("ace/mode/hjson");
 $('#hjson-editor').height($(window).height()+'px');
 editor.resize();
 
-/*
-var changetimeout;
-editor.session.on('change', function(delta) {
-    clearTimeout(changetimeout);
-    changetimeout = setTimeout(function (){
-        convert();
-    }, 2000);
-});
-*/
-
 var editor2 = ace.edit("xml-editor");
 editor2.setTheme("ace/theme/monokai");
 editor2.session.setMode("ace/mode/xml");
@@ -90,6 +80,7 @@ $('#exampleSelect').change(function (){
 });
 
 var convert = function(){
+    editor2.setValue('');
     $.post('${_SITE_URL}editor/convert', {in:editor.getValue()}, function (data){
         if(data.data){
             editor2.setValue(data.data);

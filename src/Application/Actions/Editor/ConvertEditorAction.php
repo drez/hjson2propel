@@ -20,8 +20,7 @@ class ConvertEditorAction extends Action
     protected function action(): Response
     {
         $hjson = (string) $this->resolveArg('in');
-        $std = mb_ereg_replace('/\r/', "", $hjson); // make sure we have unix style text regardless of the input
-        $hjson = $cr ? mb_ereg_replace("\n", "\r\n", $std) : $std;
+        $hjson = mb_ereg_replace('/\r/', "", $hjson); // make sure we have unix style text regardless of the input
         $parser = new \HJSON\HJSONParser();
         $obj = $parser->parse($hjson, ['assoc' => true]);
         $HjsonToPropelXml = new \HjsonToPropelXml\HjsonToPropelXml($this->logger);
