@@ -59,9 +59,12 @@ class Editor
             ->close()
             ->div(null, ['class' => 'card-body'])
             ->addDiv("", ['id' => 'xml-editor', 'addclass' => 'editor', "style" => "height: 100%; width: 100%"])
-            ->close('all');
+            ->close('all')
+
+            ->modal(['title' => 'Messages', 'id' => 'messagesModal']);
 
         $script = <<<EOL
+
 var editor = ace.edit("hjson-editor");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/hjson");
@@ -83,9 +86,48 @@ var convert = function(){
     editor2.setValue('');
     $.post('${_SITE_URL}editor/convert', {in:editor.getValue()}, function (data){
         if(data.data){
-            editor2.setValue(data.data);
+            if(data.data.xml){
+                editor2.setValue(data.data.xml);
+            }else{
+                editor2.setValue('Something went wrong');
+            }
+
+            if(data.data.message){
+                $("#messagesModal .modal-body").html(formatLog(data.data.message));
+                $("#messagesModal").modal('show');
+            }
+            
         }
     }, 'json');
+}
+
+var formatLog = function(messages){
+    var dumped_text = "";
+    var level = 0;
+
+    // The padding given at the beginning of the line.
+    var level_padding = "";
+
+    for (var j = 0; j < level + 1; j++)
+        level_padding += "  ";
+
+    if (typeof(messages) == 'object') { // Array/Hashes/Objects
+
+        for (var item in messages) {
+
+            var value = messages[item];
+
+            if (typeof(value) == 'object') { // If it is an array,
+                dumped_text += level_padding + "'" + item + "' <br />";
+                dumped_text += formatLog(value, level + 1);
+            } else {
+                dumped_text += level_padding + " " + value + "<br />";
+            }
+        }
+    } else { // Stings/Chars/Numbers etc.
+        dumped_text = "===>" + messages + "<===(" + typeof(messages) + ")";
+    }
+    return dumped_text;
 }
 
 EOL;
