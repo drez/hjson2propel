@@ -98,7 +98,10 @@ var convert = function(){
             }
             
         }
-    }, 'json');
+    }, 'json').error(function(data) {
+        $("#messagesModal .modal-body").html(data.responseJSON.error.description);
+        $("#messagesModal").modal('show');
+  });
 }
 
 var formatLog = function(messages){
@@ -118,14 +121,14 @@ var formatLog = function(messages){
             var value = messages[item];
 
             if (typeof(value) == 'object') { // If it is an array,
-                dumped_text += level_padding + "'" + item + "' <br />";
+                dumped_text += level_padding + "</ul><b>" + item + "</b><ul>";
                 dumped_text += formatLog(value, level + 1);
             } else {
-                dumped_text += level_padding + " " + value + "<br />";
+                dumped_text += level_padding + "<li>" + value + "</li>";
             }
         }
     } else { // Stings/Chars/Numbers etc.
-        dumped_text = "===>" + messages + "<===(" + typeof(messages) + ")";
+        dumped_text = messages ;
     }
     return dumped_text;
 }
