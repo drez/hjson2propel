@@ -1,0 +1,4 @@
+
+[submodule "Drez-hjson-to-propel-xml"]
+path = vendor/drez/hjson-to-propel-xml
+url = https://github.com/drez/hjson-to-propel-xml
