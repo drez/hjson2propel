@@ -21,12 +21,8 @@ class ConvertEditorAction extends Action
     protected function action(): Response
     {
         $hjson = (string) $this->resolveArg('in');
-        $hjson = mb_ereg_replace('/\r/', "", $hjson); // make sure we have unix style text regardless of the input
-        $parser = new \HJSON\HJSONParser();
-        $obj = $parser->parse($hjson, ['assoc' => true]);
         $HjsonToPropelXml = new \HjsonToPropelXml\HjsonToPropelXml($this->Logger);
-        $HjsonToPropelXml->convert($obj);
-
+        $HjsonToPropelXml->process($hjson);
         $response['xml'] = $HjsonToPropelXml->getXml();
         $response['message'] = $this->Logger->getLog();
         return $this->respondWithData($response);

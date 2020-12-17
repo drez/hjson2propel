@@ -27,7 +27,7 @@ class Editor
         $Assets->add('public/ace-builds/src-noconflict/ace.js');
         $Assets->add('public/css/main.css');
 
-        $Html->addHead(['style' => $Assets->css(), 'script' => $Assets->js() . $Assets->js()], true);
+        $Html->addHead(['style' => $Assets->css(), 'script' => $Assets->js() . $Assets->js()]);
 
         $Html
             ->jumbotron(null)
@@ -61,7 +61,7 @@ class Editor
             ->addDiv("", ['id' => 'xml-editor', 'addclass' => 'editor', "style" => "height: 100%; width: 100%"])
             ->close('all')
 
-            ->modal(['title' => 'Messages', 'id' => 'messagesModal']);
+            ->addModal($Html->spinner('Converting ...', ['id' => 'spinner'], true), ['title' => 'Messages', 'id' => 'messagesModal']);
 
         $script = <<<EOL
 
@@ -84,8 +84,13 @@ $('#exampleSelect').change(function (){
 
 var convert = function(){
     editor2.setValue('');
+    $('.modal-dialog .modal-body .spinner-border').show();
+    $('.modal-dialog .btn-outline-primary').hide();
+    $("#messagesModal .modal-body").html('Converting ...');
+    $("#messagesModal").modal('show');
     $.post('${_SITE_URL}editor/convert', {in:editor.getValue()}, function (data){
         if(data.data){
+            $('.modal-dialog .modal-body .spinner-border').hide();
             if(data.data.xml){
                 editor2.setValue(data.data.xml);
             }else{
@@ -94,13 +99,12 @@ var convert = function(){
 
             if(data.data.message){
                 $("#messagesModal .modal-body").html(formatLog(data.data.message));
-                $("#messagesModal").modal('show');
             }
-            
+            $('.modal-dialog .btn-outline-primary').show();
         }
     }, 'json').error(function(data) {
         $("#messagesModal .modal-body").html(data.responseJSON.error.description);
-        $("#messagesModal").modal('show');
+        $('.modal-dialog .btn-outline-primary').show();
   });
 }
 
